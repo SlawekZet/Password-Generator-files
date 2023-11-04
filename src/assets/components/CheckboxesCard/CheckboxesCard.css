@@ -1,0 +1,41 @@
+.checkboxes {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1.94rem;
+}
+
+.checkbox-input {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+  font: inherit;
+  color: var(--very-dark-grey);
+  width: 1.3em;
+  height: 1.3em;
+  border: 0.15em solid var(--light-grey);
+  transform: translateY(1.3em);
+  display: grid;
+  place-content: center;
+}
+
+.checkbox-input::before {
+  content: "";
+  width: 0.7em;
+  height: 0.7em;
+  transform: scale(0);
+  box-shadow: inset 1em 1em var(--neon-green);
+  transform-origin: bottom left;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+.checkbox-input:checked::before {
+  transform: scale(1);
+}
+
+.checkbox-input:hover {
+  cursor: pointer;
+}
+
+.label {
+  padding-left: 3rem;
+}

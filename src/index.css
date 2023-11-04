@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --very-dark-grey: #18171f;
+  --dark-grey: #24232c;
+  --grey: #817d92;
+  --light-grey: #e6e5ea;
+  --neon-green: #a4ffaf;
+  --red: #f64a4a;
+  --orange: #fb7c58;
+  --yellow: #f8cd65;
+}
+
+body {
+  background-color: var(--very-dark-grey);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 16px;
+  color: var(--light-grey);
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
