@@ -50,6 +50,13 @@ function App() {
         ...errors,
         length: true,
       });
+    } else if (
+      !passwordSettings.uppercase &&
+      !passwordSettings.lowercase &&
+      !passwordSettings.numbers &&
+      !passwordSettings.symbols
+    ) {
+      return setErrors({ ...errors, settings: true });
     }
 
     if (passwordSettings.uppercase) {
@@ -78,7 +85,7 @@ function App() {
   };
 
   const handleCopyPassword = async () => {
-    if (passwordSettings.length === 0) {
+    if (!generatedPassword) {
       return alert("Generate the password first!");
     }
     try {
