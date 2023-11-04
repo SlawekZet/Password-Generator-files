@@ -14,6 +14,10 @@ function App() {
   });
   const [isPasswordCopied, setIsPasswordCopied] = useState(false);
   const [generatedPassword, setGeneratedPassword] = useState("");
+  const [errors, setErrors] = useState({
+    length: false,
+    settings: false,
+  });
 
   // these are for slider CSS - the progress bar. Max of the progress must equal 100, so the multiplyer is 100/max password length.
   const progress = passwordSettings.length * 5;
@@ -30,16 +34,22 @@ function App() {
     let password = "";
 
     if (passwordSettings.length === 0) {
-      return alert("Choose the password length");
-    }
+      if (
+        !passwordSettings.uppercase &&
+        !passwordSettings.lowercase &&
+        !passwordSettings.numbers &&
+        !passwordSettings.symbols
+      ) {
+        return setErrors({
+          length: true,
+          settings: true,
+        });
+      }
 
-    if (
-      !passwordSettings.uppercase &&
-      !passwordSettings.lowercase &&
-      !passwordSettings.numbers &&
-      !passwordSettings.symbols
-    ) {
-      return alert("Choose the password settings");
+      setErrors({
+        ...errors,
+        length: true,
+      });
     }
 
     if (passwordSettings.uppercase) {
@@ -101,6 +111,24 @@ function App() {
     setGeneratedPassword("");
   }, [passwordSettings]);
 
+  useEffect(() => {
+    setErrors({ ...errors, length: false });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [passwordSettings.length]);
+
+  useEffect(() => {
+    setErrors({ ...errors, settings: false });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    passwordSettings.uppercase,
+    passwordSettings.lowercase,
+    passwordSettings.numbers,
+    passwordSettings.symbols,
+  ]);
+
+  console.log(errors);
+  console.log(passwordSettings);
+
   return (
     <>
       <main>
@@ -130,6 +158,16 @@ function App() {
             </svg>
           </button>
         </div>
+        {errors.length && errors.settings ? (
+          <p className="primary error">
+            Choose the password length and settings!
+          </p>
+        ) : errors.length ? (
+          <p className="primary error">Choose the password length</p>
+        ) : errors.settings ? (
+          <p className="primary error">Choose the password settings!</p>
+        ) : null}
+
         <div className="password-generator-wrapper">
           <div className="char-length">
             <p className="primary">Character length</p>

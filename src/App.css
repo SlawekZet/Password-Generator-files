@@ -93,3 +93,9 @@ main {
 .generate-button:active .path-icon-arrow {
   fill: var(--neon-green);
 }
+
+.error {
+  color: var(--red);
+  text-align: center;
+  margin-top: 1.5rem;
+}
