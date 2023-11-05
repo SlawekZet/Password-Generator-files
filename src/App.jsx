@@ -116,6 +116,7 @@ function App() {
 
   useEffect(() => {
     setGeneratedPassword("");
+    setIsPasswordCopied(false);
   }, [passwordSettings]);
 
   useEffect(() => {
@@ -132,9 +133,6 @@ function App() {
     passwordSettings.numbers,
     passwordSettings.symbols,
   ]);
-
-  console.log(errors);
-  console.log(passwordSettings);
 
   return (
     <>

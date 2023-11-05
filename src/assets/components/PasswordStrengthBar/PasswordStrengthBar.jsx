@@ -70,6 +70,7 @@ export const PasswordStrengthBar = ({ passwordSettings }) => {
       return handleStrengthBarRender(strong);
     }
   };
+
   return (
     <>
       <div className="strength-bar-wrapper">
